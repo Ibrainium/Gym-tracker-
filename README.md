@@ -65,13 +65,6 @@ python app.py
 
 The application includes regular expression matching in the search fields.
 
-Examples:
-
-* `bench`
-* `^P`
-* `press$`
-* `2025-05-[0-9]+`
-
 
 ## 6. API
 
