@@ -44,7 +44,7 @@ workout-tracker/
 
 ## 2. Prerequisites
 
-* Python 3.9+
+* Python 3.12 (A MUST, otherwise some packages won't run)
 * PostgreSQL 13+
 
 ## 3. Setup
@@ -52,8 +52,11 @@ workout-tracker/
 ### Step 1: Create a virtual environment
 
 ```bash
-python -m venv venv
-source venv/bin/activate
+conda create -n dbs_env python =3.12
+conda activate dbs_env
+```
+Head to the app directory then run 
+```bash
 pip install -r requirements.txt
 ```
 
@@ -65,19 +68,11 @@ psql -d workout_tracker -f schema.sql
 ```
 
 
-
 ### Step 4: Run the application
 
 ```bash
 python app.py
 ```
-
-
-## 4. Test Accounts
-No test accounts are provided, create an account and test yourself :) 
-
-
-The account `jdoe` contains the most sample data.
 
 ## 5. Regular Expression Search
 
@@ -126,6 +121,6 @@ See the attached E/R diagram for the complete database design.
 
 ## 8. AI Declaration
 
-ChatGPT was used for documentation assistance, debugging, and code suggestions.
+AI was used for documentation assistance, debugging, and code suggestions.
 
 All generated content was reviewed and modified by the project authors.
