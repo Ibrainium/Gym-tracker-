@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Workout Tracker{% endblock %}</title>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg app-nav">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('page_index') if current_user.is_authenticated else url_for('auth.login') }}">
+                Repset
+            </a>
+
+            {% if current_user.is_authenticated %}
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#mainnav" aria-controls="mainnav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainnav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    {% set links = [
+                        ('/',                     'Dashboard'),
+                        ('/exercises',            'Exercises'),
+                        ('/workout-plans',        'Plans'),
+                        ('/workout-sessions',     'Sessions'),
+                        ('/performed-exercises',  'Performed'),
+                        ('/exercise-sets',        'Sets')
+                    ] %}
+                    {% for href, label in links %}
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == href %}active{% endif %}"
+                               href="{{ href }}">{{ label }}</a>
+                        </li>
+                    {% endfor %}
+                    <li class="nav-item ms-lg-3 user-chip">
+                        <span class="navbar-text me-2">{{ current_user.username }}</span>
+                    </li>
+                    <li class="nav-item">
+                        <form action="{{ url_for('auth.logout') }}" method="post" class="d-inline">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn btn-sm btn-logout">Log out</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+    </nav>
+
+    <main class="container fade-in">
+        {% block content %}{% endblock %}
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

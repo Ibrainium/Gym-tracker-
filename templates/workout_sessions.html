@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Workout Sessions - Workout Tracker{% endblock %}
+
+{% block content %}
+<div class="page-head"><h1>Workout Sessions</h1></div>
+
+{% if error %}<p class="form-error">{{ error }}</p>{% endif %}
+
+<form method="post" class="surface entity-form"
+      action="{% if editing %}{{ url_for('pages.workout_sessions_update', id=edit_id) }}{% else %}{{ url_for('pages.workout_sessions_create') }}{% endif %}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <h2>{% if editing %}Edit session #{{ edit_id }}{% else %}Add a new session{% endif %}</h2>
+
+    <label>Plan
+        <select name="plan_id" required>
+            <option value="">-- choose a plan --</option>
+            {% for p in options.plans %}
+                <option value="{{ p.plan_id }}" {% if form.get('plan_id')|string == p.plan_id|string %}selected{% endif %}>
+                    {{ p.plan_name }} (#{{ p.plan_id }})
+                </option>
+            {% endfor %}
+        </select>
+    </label>
+    <label>Date
+        <input type="date" name="date" required value="{{ form.get('date', '') }}">
+    </label>
+
+    <button type="submit" class="btn btn-volt">{% if editing %}Save{% else %}Add{% endif %}</button>
+    {% if editing %}<a href="{{ url_for('pages.workout_sessions_list') }}">Cancel</a>{% endif %}
+</form>
+
+<form method="get" action="{{ url_for('pages.workout_sessions_list') }}" class="search-bar">
+    <div class="search-field">
+        <input type="text" name="q" value="{{ q }}" placeholder="Search" class="form-control search-input">
+        <button type="submit" class="btn btn-volt">Search</button>
+        {% if q %}<a class="btn search-clear" href="{{ url_for('pages.workout_sessions_list') }}">Clear</a>{% endif %}
+    </div>
+    <span class="search-count">{{ rows|length }} {% if q %}match{% else %}total{% endif %}</span>
+</form>
+
+<table class="table surface">
+    <thead><tr><th>ID</th><th>Plan</th><th>Date</th><th></th></tr></thead>
+    <tbody>
+    {% for s in rows %}
+        <tr>
+            <td>{{ s.session_id }}</td>
+            <td>{% if s.plan %}{{ s.plan.plan_name }} (#{{ s.plan_id }}){% else %}#{{ s.plan_id }}{% endif %}</td>
+            <td>{{ s.date }}</td>
+            <td class="row-actions">
+                <a href="{{ url_for('pages.workout_sessions_list', edit=s.session_id) }}">Edit</a>
+                <form method="post" action="{{ url_for('pages.workout_sessions_delete', id=s.session_id) }}"
+                      style="display:inline" onsubmit="return confirm('Delete this session?')">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="btn-link-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    {% else %}
+        <tr><td colspan="4" class="empty-state">No records.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,131 @@
+# Workout Tracker
+
+A Flask and PostgreSQL web application based on the workout-tracker E/R model:
+
+**Workout Plans → Workout Sessions → Performed Exercises → Exercise Sets**
+
+The application allows users to create, view, update, and delete workout data.
+Each user can only access their own workout plans, sessions, exercises, and
+sets. The exercise catalogue is shared between all users.
+
+The project uses Flask, SQLAlchemy, PostgreSQL, Bootstrap, HTML, CSS, and
+JavaScript.
+
+## Authentication
+
+* Users can log in with either username or email and password.
+* Passwords are stored as hashed values and are never saved in plain text.
+* Sessions expire after 30 minutes of inactivity.
+* CSRF protection is enabled for forms and API requests.
+* Unauthenticated users are redirected to the login page.
+* User accounts are managed through CLI commands.
+
+## 1. Folder Structure
+
+```text
+workout-tracker/
+├── schema.sql
+├── requirements.txt
+├── config.py
+├── models.py
+├── auth.py
+├── app.py
+├── api/
+├── templates/
+└── static/
+```
+
+### Application Structure
+
+* The database schema is defined in `schema.sql`.
+* The SQLAlchemy models correspond to the database tables.
+* The API provides CRUD operations for all entities.
+* The front end allows users to manage data through a web interface.
+
+## 2. Prerequisites
+
+* Python 3.9+
+* PostgreSQL 13+
+
+## 3. Setup
+
+### Step 1: Create a virtual environment
+
+```bash
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+### Step 2: Create the database
+
+```bash
+createdb workout_tracker
+psql -d workout_tracker -f schema.sql
+```
+
+
+
+### Step 4: Run the application
+
+```bash
+python app.py
+```
+
+
+## 4. Test Accounts
+No test accounts are provided, create an account and test yourself :) 
+
+
+The account `jdoe` contains the most sample data.
+
+## 5. Regular Expression Search
+
+The application includes regular expression matching in the search fields.
+
+Examples:
+
+* `bench`
+* `^P`
+* `press$`
+* `2025-05-[0-9]+`
+
+The filtering is implemented in JavaScript and updates the displayed rows as the user types.
+
+## 6. API
+
+The application provides CRUD (CREATE; READ; UPDATE; DELETE) functionality for:
+
+* Exercises
+* Workout Plans
+* Workout Sessions
+* Performed Exercises
+* Exercise Sets
+
+Supported operations:
+
+* GET
+* POST
+* PUT
+* DELETE
+
+All API endpoints require authentication.
+
+## 7. Database Design
+
+The database contains the following entities:
+
+* Users
+* Exercises
+* Workout Plans
+* Workout Sessions
+* Performed Exercises
+* Exercise Sets
+
+See the attached E/R diagram for the complete database design.
+
+## 8. AI Declaration
+
+ChatGPT was used for documentation assistance, debugging, and code suggestions.
+
+All generated content was reviewed and modified by the project authors.

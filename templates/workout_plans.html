@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Workout Plans - Workout Tracker{% endblock %}
+
+{% block content %}
+<div class="page-head"><h1>Workout Plans</h1></div>
+
+{% if error %}<p class="form-error">{{ error }}</p>{% endif %}
+
+<form method="post" class="surface entity-form"
+      action="{% if editing %}{{ url_for('pages.workout_plans_update', id=edit_id) }}{% else %}{{ url_for('pages.workout_plans_create') }}{% endif %}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <h2>{% if editing %}Edit plan #{{ edit_id }}{% else %}Add a new plan{% endif %}</h2>
+
+    <label>Plan name
+        <input type="text" name="plan_name" required value="{{ form.get('plan_name', '') }}">
+    </label>
+
+    <button type="submit" class="btn btn-volt">{% if editing %}Save{% else %}Add{% endif %}</button>
+    {% if editing %}<a href="{{ url_for('pages.workout_plans_list') }}">Cancel</a>{% endif %}
+</form>
+
+<form method="get" action="{{ url_for('pages.workout_plans_list') }}" class="search-bar">
+    <div class="search-field">
+        <input type="text" name="q" value="{{ q }}" placeholder="Search" class="form-control search-input">
+        <button type="submit" class="btn btn-volt">Search</button>
+        {% if q %}<a class="btn search-clear" href="{{ url_for('pages.workout_plans_list') }}">Clear</a>{% endif %}
+    </div>
+    <span class="search-count">{{ rows|length }} {% if q %}match{% else %}total{% endif %}</span>
+</form>
+
+<table class="table surface">
+    <thead><tr><th>ID</th><th>Plan name</th><th></th></tr></thead>
+    <tbody>
+    {% for p in rows %}
+        <tr>
+            <td>{{ p.plan_id }}</td>
+            <td>{{ p.plan_name }}</td>
+            <td class="row-actions">
+                <a href="{{ url_for('pages.workout_plans_list', edit=p.plan_id) }}">Edit</a>
+                <form method="post" action="{{ url_for('pages.workout_plans_delete', id=p.plan_id) }}"
+                      style="display:inline" onsubmit="return confirm('Delete this plan? Its sessions will be removed too.')">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="btn-link-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    {% else %}
+        <tr><td colspan="3" class="empty-state">No records.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

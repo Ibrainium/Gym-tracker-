@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - Workout Tracker{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Welcome back, {{ current_user.username }}</h1>
+    <p class="mb-0">Here's an overview of your workout data.</p>
+</div>
+
+<div class="page-head">
+    <h2 style="margin:0;">Overview</h2>
+</div>
+
+<div class="stat-grid">
+    <a class="surface stat-card" href="{{ url_for('pages.workout_plans_list') }}">
+        <div class="stat-num">{{ counts.workout_plans }}</div>
+        <div class="stat-label">Workout plans</div>
+    </a>
+    <a class="surface stat-card" href="{{ url_for('pages.workout_sessions_list') }}">
+        <div class="stat-num">{{ counts.workout_sessions }}</div>
+        <div class="stat-label">Workout sessions</div>
+    </a>
+    <a class="surface stat-card" href="{{ url_for('pages.performed_exercises_list') }}">
+        <div class="stat-num">{{ counts.performed_exercises }}</div>
+        <div class="stat-label">Performed exercises</div>
+    </a>
+    <a class="surface stat-card" href="{{ url_for('pages.exercise_sets_list') }}">
+        <div class="stat-num">{{ counts.exercise_sets }}</div>
+        <div class="stat-label">Exercise sets</div>
+    </a>
+    <a class="surface stat-card" href="{{ url_for('pages.exercises_list') }}">
+        <div class="stat-num">{{ counts.exercises }}</div>
+        <div class="stat-label">Exercises (catalogue)</div>
+    </a>
+</div>
+{% endblock %}

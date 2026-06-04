@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Sign up · Repset{% endblock %}
+
+{% block content %}
+<div class="login-wrap">
+    <div class="surface login-card">
+        <div class="login-brand brand-font">
+            Repset
+        </div>
+        <h1 class="login-title">Create your account</h1>
+        <p class="login-sub">Start tracking your workouts in seconds.</p>
+
+        {% if error %}
+        <div class="alert alert-danger py-2" role="alert">{{ error }}</div>
+        {% endif %}
+
+        <form method="post" action="{{ url_for('auth.signup') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+            <div class="mb-3">
+                <label class="form-label" for="username">Username</label>
+                <input class="form-control form-control-lg" id="username" name="username"
+                       type="text" autocomplete="username" required autofocus
+                       value="{{ form.get('username', '') }}"
+                       minlength="3" maxlength="50">
+                <div class="form-text">3–50 characters: letters, numbers, and . _ -</div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-control form-control-lg" id="email" name="email"
+                       type="email" autocomplete="email" required
+                       value="{{ form.get('email', '') }}">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-control form-control-lg" id="password" name="password"
+                       type="password" autocomplete="new-password" required minlength="8">
+                <div class="form-text">At least 8 characters.</div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label" for="confirm">Confirm password</label>
+                <input class="form-control form-control-lg" id="confirm" name="confirm"
+                       type="password" autocomplete="new-password" required minlength="8">
+            </div>
+
+            <button type="submit" class="btn btn-volt btn-lg w-100">Create account</button>
+        </form>
+
+        <p class="login-alt">
+            Already have an account? <a href="{{ url_for('auth.login') }}">Log in</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
