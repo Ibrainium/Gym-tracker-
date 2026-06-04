@@ -20,20 +20,7 @@ JavaScript.
 * Unauthenticated users are redirected to the login page.
 * User accounts are managed through CLI commands.
 
-## 1. Folder Structure
 
-```text
-workout-tracker/
-├── schema.sql
-├── requirements.txt
-├── config.py
-├── models.py
-├── auth.py
-├── app.py
-├── api/
-├── templates/
-└── static/
-```
 
 ### Application Structure
 
