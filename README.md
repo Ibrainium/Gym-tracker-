@@ -72,7 +72,6 @@ Examples:
 * `press$`
 * `2025-05-[0-9]+`
 
-The filtering is implemented in JavaScript and updates the displayed rows as the user types.
 
 ## 6. API
 
