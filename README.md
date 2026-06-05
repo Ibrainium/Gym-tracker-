@@ -1,4 +1,4 @@
-# Workout Tracker
+# Gym Tracker
 
 A Flask and PostgreSQL web application based on the workout-tracker E/R model:
 
