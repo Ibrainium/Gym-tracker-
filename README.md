@@ -96,3 +96,5 @@ The database contains the following entities:
 
 See the attached E/R diagram for the complete database design.
 
+## 8. Interaction instructions 
+If you managed to run the app, you will be directed to a sign-in page. Then click on "Sign up" where you create an account and get access to the Dashboard. Once you reach the Dashboard, start by creating a workout plan and then by filling the "plan name" section. After that, add a session by choosing the workout you did and define a date. After that, you can move to the "Performed Exercises" section where you can choose the session and the exercises you did. If the exercise you did does not exist, you can add it in the Exercises section.
