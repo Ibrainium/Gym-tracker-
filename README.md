@@ -34,7 +34,8 @@ JavaScript.
 * Python 3.12 (A MUST, otherwise some packages won't run)
 * PostgreSQL 13+
 
-## 3. Setup
+## 3. Setup: 
+This is setup uses Bash commands, which we know works for Linux systems, and should work for macbook users, if you are on windows, well, you might have to user some different commands. 
 
 ### Step 1: Create a virtual environment
 
@@ -55,7 +56,7 @@ sudo -u postgres psql -d workout_tracker -f schema.sql
 ```
 
 
-### Step 4: Run the application
+### Step 3: Run the application
 
 ```bash
 python app.py
