@@ -1,4 +1,4 @@
-# Workout Tracker
+# Gym Tracker
 
 A Flask and PostgreSQL web application based on the workout-tracker E/R model:
 
@@ -39,7 +39,7 @@ JavaScript.
 ### Step 1: Create a virtual environment
 
 ```bash
-conda create -n dbs_env python =3.12
+conda create -n dbs_env python=3.12
 conda activate dbs_env
 ```
 Head to the app directory then run 
