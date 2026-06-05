@@ -64,7 +64,7 @@ python app.py
 ## 5. Regular Expression Search
 
 The application includes regular expression matching in the search fields.
-
+Also when creating an account, matching is used for the length of passwords and and correctness of emails. 
 
 ## 6. API
 
@@ -98,8 +98,3 @@ The database contains the following entities:
 
 See the attached E/R diagram for the complete database design.
 
-## 8. AI Declaration
-
-AI was used for documentation assistance, debugging, and code suggestions.
-
-All generated content was reviewed and modified by the project authors.
