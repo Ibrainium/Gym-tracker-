@@ -97,9 +97,3 @@ The database contains the following entities:
 * Exercise Sets
 
 See the attached E/R diagram for the complete database design.
-
-## 8. AI Declaration
-
-AI was used for documentation assistance, debugging, and code suggestions.
-
-All generated content was reviewed and modified by the project authors.
