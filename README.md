@@ -49,11 +49,15 @@ pip install -r requirements.txt
 ```
 
 ### Step 2: Create the database
-
 ```bash
 sudo -u postgres createdb workout_tracker
 sudo -u postgres psql -d workout_tracker -f schema.sql
 ```
+
+If you are windows, make sure that you have added PostgreSQL to your system path, otherswise you won't be able to use PostgreSQL commands in the terminal. 
+Once you do that, use the above commands, without sudo, and replace -u with -U
+
+
 
 
 ### Step 3: Run the application
@@ -61,6 +65,7 @@ sudo -u postgres psql -d workout_tracker -f schema.sql
 ```bash
 python app.py
 ```
+Then ctrl+right click on the second link. 
 
 ## 5. Regular Expression Search
 
@@ -77,14 +82,7 @@ The application provides CRUD (CREATE; READ; UPDATE; DELETE) functionality for:
 * Performed Exercises
 * Exercise Sets
 
-Supported operations:
 
-* GET
-* POST
-* PUT
-* DELETE
-
-All API endpoints require authentication.
 
 ## 7. Database Design
 
