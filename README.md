@@ -8,8 +8,7 @@ The application allows users to create, view, update, and delete workout data.
 Each user can only access their own workout plans, sessions, exercises, and
 sets. The exercise catalogue is shared between all users.
 
-The project uses Flask, SQLAlchemy, PostgreSQL, Bootstrap, HTML, CSS, and
-JavaScript.
+
 
 ## Authentication
 
