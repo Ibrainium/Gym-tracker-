@@ -50,8 +50,8 @@ pip install -r requirements.txt
 ### Step 2: Create the database
 
 ```bash
-createdb workout_tracker
-psql -d workout_tracker -f schema.sql
+sudo -u postgres createdb workout_tracker
+sudo -u postgres psql -d workout_tracker -f schema.sql
 ```
 
 
